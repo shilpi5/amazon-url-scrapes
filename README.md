@@ -8,7 +8,7 @@ https://user-images.githubusercontent.com/22277084/144312287-308378bf-895e-4dc3-
 The images of both the services are pushed to [DockerHub](https://hub.docker.com/repository/docker/shilpi57/amazon-scrape).
 
 The two services can be run using below command
-$ docker-compose up
+`$ docker-compose up`
 
 ### There are three Rest API's exposed
 1. #### http://localhost:8080/product/amazon - scrapes details for given amazon url
