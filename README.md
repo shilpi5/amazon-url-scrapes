@@ -3,16 +3,19 @@ There are two services:
 1. To Scrape the product details from amazon url
 2. To Store the retrieved product data in a file with createdAt timestamp. It has a api to show the data of file on web
 
+https://user-images.githubusercontent.com/22277084/144312287-308378bf-895e-4dc3-bd4f-57e880e35f61.mp4
+
 The images of both the services are pushed to [DockerHub](https://hub.docker.com/repository/docker/shilpi57/amazon-scrape).
 
 The two services can be run using below command
 $ docker-compose up
 
-There are three Rest API's exposed
-1. #### http://localhost:8080/product/amazon #### - scrapes details for given amazon url
+###There are three Rest API's exposed
+1. #### http://localhost:8080/product/amazon - scrapes details for given amazon url
     Method: POST
     
-    ```RequestBody:
+    ```
+    RequestBody:
       {
     "producturl":"https://www.amazon.in/OnePlus-Smart-Band-Saturation-Compatible/dp/B07XY9BZPM"
         }
@@ -36,15 +39,17 @@ There are three Rest API's exposed
         "price": "₹2,484.00",
         "totalReviews": "14"
         }
-        }```
+        }
+        ```
 ----
-2. #### http://storage-service:8081/save/product/amazon #### - saves the retreived product detail in file and exposes throug `/data` api
+2. #### http://storage-service:8081/save/product/amazon - saves the retreived product detail in file and exposes throug `/data` api
     Method: POST
 ----
-3. #### http://localhost:8081/data ####
+3. #### http://localhost:8081/data
     Method: GET
         
-    ```ResponseBody:
+    ```
+    ResponseBody:
      [   {
         "createdAt": "2021-12-02 01:52:55.7499068 +0530 IST",
         "url": "https://www.amazon.in/OnePlus-Smart-Band-Saturation-Compatible/dp/B07XY9BZPM",
@@ -65,7 +70,11 @@ There are three Rest API's exposed
             "totalReviews": "14"
             }
         }
-    ]```
+    ]
+    ```
 
 ----
     
+
+
+
