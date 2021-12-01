@@ -1,0 +1,14 @@
+version: '3'
+services:
+  storage-service:
+    image: shilpi57/amazon-scrape:storage-v3
+    container_name: storage-service
+    restart: always
+    ports:
+      - '8081:8081'
+  scraper-service:
+    image: shilpi57/amazon-scrape:scraper-v3
+    container_name: scraper-service
+    restart: always
+    ports:
+      - '8080:8080'
