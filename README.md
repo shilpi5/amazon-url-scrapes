@@ -10,7 +10,7 @@ The images of both the services are pushed to [DockerHub](https://hub.docker.com
 The two services can be run using below command
 $ docker-compose up
 
-###There are three Rest API's exposed
+### There are three Rest API's exposed
 1. #### http://localhost:8080/product/amazon - scrapes details for given amazon url
     Method: POST
     
@@ -45,7 +45,7 @@ $ docker-compose up
 2. #### http://storage-service:8081/save/product/amazon - saves the retreived product detail in file and exposes throug `/data` api
     Method: POST
 ----
-3. #### http://localhost:8081/data
+3. #### http://localhost:8081/data - displays the product data stored in file from previous api
     Method: GET
         
     ```
