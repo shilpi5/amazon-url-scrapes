@@ -108,7 +108,7 @@ func StoreProductInfo(productDetails ProductInfoResponse) {
 
 	jsonReq, _ := json.Marshal(productDetails)
 
-	_, err := GetResponse("POST", "http://localhost:8081/save/product/amazon", jsonReq)
+	_, err := GetResponse("POST", "http://storage-service:8081/save/product/amazon", jsonReq)
 	if err != nil {
 		panic(err)
 	}
