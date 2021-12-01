@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -23,10 +24,26 @@ func GetIndianTimeStampNow() (time_now time.Time) {
 func WriteAmazonProductInfoToFile(w http.ResponseWriter, r *http.Request) {
 
 	date_time := "\"createdAt\":" + "\"" + GetIndianTimeStampNow().String() + "\","
-
+    
+	
+	
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Errorf("Error during reading body: %v", err)
+	}
+    
+	//avoid duplicate product data saving in file
+	re := regexp.MustCompile("\"(url)\"[:](\"([^\"\"]+)\")")
+	re2 := regexp.MustCompile("\"(name)\"[:](\"([^\"\"]+)\")")
+	match := re.FindStringSubmatch(string(body))
+	match2 := re2.FindStringSubmatch(string(body))
+	b, err := ioutil.ReadFile("output.txt")
+    if err != nil {
+        panic(err)
+    }
+    s := string(b)
+	if strings.Contains(s, match[0]) || strings.Contains(s, match2[0]) {
+		return
 	}
 
 	//add timestamp
@@ -35,7 +52,7 @@ func WriteAmazonProductInfoToFile(w http.ResponseWriter, r *http.Request) {
 	data_with_timestamp := p[:index] + date_time + p[index:]
 
 	//open file to write amazon product details
-	f, err := os.OpenFile("output.txt", os.O_APPEND|os.O_WRONLY, os.ModePerm)
+	f, err := os.OpenFile("output.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, os.ModePerm)
 	if err != nil {
 		panic(err)
 	}
